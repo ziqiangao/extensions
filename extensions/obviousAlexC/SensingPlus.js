@@ -1,4 +1,5 @@
 // Name: Sensing Plus
+// ID: obviousalexsensing
 // Description: An extension to the sensing category.
 // By: ObviousAlexC <https://scratch.mit.edu/users/pinksheep2917/>
 
@@ -14,8 +15,8 @@
     typeof webkitSpeechRecognition !== "undefined"
       ? window.webkitSpeechRecognition
       : typeof window.SpeechRecognition !== "undefined"
-      ? window.SpeechRecognition
-      : null;
+        ? window.SpeechRecognition
+        : null;
 
   let recognizedSpeech = "";
   let recording = false;
@@ -34,7 +35,7 @@
       return;
     }
 
-    if (!await Scratch.canRecordAudio()) {
+    if (!(await Scratch.canRecordAudio())) {
       return;
     }
 
@@ -127,58 +128,6 @@
       console.warn("gyro API is not supported in this browser");
     }
   };
-
-  if (!Scratch) {
-    Scratch = {
-      TargetType: {
-        SPRITE: "sprite",
-        STAGE: "stage",
-      },
-      BlockType: {
-        COMMAND: "command",
-        REPORTER: "reporter",
-        BOOLEAN: "Boolean",
-        HAT: "hat",
-      },
-      ArgumentType: {
-        STRING: "string",
-        NUMBER: "number",
-        COLOR: "color",
-        ANGLE: "angle",
-        BOOLEAN: "Boolean",
-        MATRIX: "matrix",
-        NOTE: "note",
-      },
-      Cast: {
-        toNumber: (input) => {
-          return Number(input);
-        },
-
-        toString: (input) => {
-          return String(input);
-        },
-
-        toBoolean: (input) => {
-          return Boolean(input);
-        },
-      },
-      vm: window.vm,
-      extensions: {
-        unsandboxed: true,
-        register: (object) => {
-          const serviceName =
-            vm.extensionManager._registerInternalExtension(object);
-          vm.extensionManager._loadedExtensions.set(
-            object.getInfo().id,
-            serviceName
-          );
-        },
-      },
-    };
-    if (!Scratch.vm) {
-      throw new Error("The VM does not exist");
-    }
-  }
 
   const isPackaged = Scratch.vm.runtime.isPackaged;
 
@@ -355,6 +304,7 @@
             text: "Supports touches?",
             blockIconURI: touchIco,
             arguments: {},
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getMaxTouches",
@@ -362,6 +312,7 @@
             text: "# of simultaneous possible",
             blockIconURI: touchIco,
             arguments: {},
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getFingersTouching",
@@ -369,6 +320,7 @@
             text: "# of fingers down",
             blockIconURI: touchIco,
             arguments: {},
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "isFingerDown",
@@ -381,6 +333,7 @@
                 menu: "fingerIDMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "touchingFinger",
@@ -389,6 +342,8 @@
             blockIconURI: touchIco,
             filter: [Scratch.TargetType.SPRITE],
             arguments: {},
+            disableMonitor: true,
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "touchingSpecificFinger",
@@ -402,6 +357,7 @@
                 menu: "fingerIDMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getTouchingFingerID",
@@ -411,6 +367,7 @@
             filter: [Scratch.TargetType.SPRITE],
             blockIconURI: touchIco,
             arguments: {},
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "fingerPosition",
@@ -427,6 +384,7 @@
                 menu: "coordmenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getFingerSpeed",
@@ -439,6 +397,7 @@
                 menu: "fingerIDMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -456,6 +415,7 @@
                 menu: "listMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "lengthOfListInSprite",
@@ -469,6 +429,7 @@
                 menu: "listMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "listContains",
@@ -485,6 +446,7 @@
                 menu: "listMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "itemNumberInList",
@@ -501,6 +463,7 @@
                 menu: "listMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -515,6 +478,7 @@
                 menu: "spriteMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "touchingClone",
@@ -528,6 +492,7 @@
                 menu: "spriteMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "clonesOfSprite",
@@ -541,6 +506,7 @@
                 menu: "spriteMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -555,6 +521,7 @@
                 menu: "effectMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "isHidden",
@@ -562,6 +529,8 @@
             text: "Hidden?",
             blockIconURI: effectIco,
             filter: [Scratch.TargetType.SPRITE],
+            disableMonitor: true,
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getRotationStyle",
@@ -570,6 +539,7 @@
             blockIconURI: rotationIco,
             disableMonitor: true,
             filter: [Scratch.TargetType.SPRITE],
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getSpriteLayer",
@@ -578,6 +548,7 @@
             blockIconURI: layerIco,
             disableMonitor: true,
             filter: [Scratch.TargetType.SPRITE],
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -586,6 +557,7 @@
             text: "Copied Contents",
             blockIconURI: clipboardIco,
             disableMonitor: true,
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "setClipBoard",
@@ -598,6 +570,7 @@
                 defaultValue: "",
               },
             },
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -605,7 +578,7 @@
             blockIconURI: packagedIco,
             blockType: Scratch.BlockType.BOOLEAN,
             text: "Is Packaged?",
-            disableMonitor: false,
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -623,18 +596,21 @@
                 menu: "toggleMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "returnWords",
             blockType: Scratch.BlockType.REPORTER,
             text: "Recognized Words",
             blockIconURI: speechIco,
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "isrecording",
             blockType: Scratch.BlockType.BOOLEAN,
             text: "Recording?",
             blockIconURI: speechIco,
+            extensions: ["colours_sensing"],
           },
           "---",
           {
@@ -652,6 +628,7 @@
                 menu: "deviceMenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
           {
             opcode: "getDeviceSpeed",
@@ -669,6 +646,7 @@
                 menu: "axismenu",
               },
             },
+            extensions: ["colours_sensing"],
           },
         ],
         menus: {
@@ -886,11 +864,11 @@
 
     getClipBoard() {
       if (navigator.clipboard && navigator.clipboard.readText) {
-        return Scratch.canReadClipboard().then(allowed => {
+        return Scratch.canReadClipboard().then((allowed) => {
           if (allowed) {
             return navigator.clipboard.readText();
           }
-          return '';
+          return "";
         });
       }
       return "";
